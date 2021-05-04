@@ -5,17 +5,27 @@
  */
 package com.cvven.gcolloque;
 
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author toyzy
  */
 public class auth extends javax.swing.JFrame {
-
+        
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
     /**
      * Creates new form auth
      */
     public auth() {
         initComponents();
+        
+        conn = connexionBDD.Connexion();
     }
 
     /**
@@ -33,11 +43,12 @@ public class auth extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        email = new javax.swing.JTextField();
+        f_mdp = new javax.swing.JButton();
+        connexion = new javax.swing.JButton();
+        password = new javax.swing.JPasswordField();
         jCheckBox1 = new javax.swing.JCheckBox();
+        Description = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -63,23 +74,48 @@ public class auth extends javax.swing.JFrame {
 
         jLabel3.setText("Mot de passe :");
 
-        jTextField1.setText("test@exemple.fr");
-
-        jButton1.setText("Mot de passe oublié ?");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        email.setText("test@exemple.fr");
+        email.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                emailMouseMoved(evt);
+            }
+        });
+        email.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                emailMouseExited(evt);
             }
         });
 
-        jButton2.setText("Connexion");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        f_mdp.setText("Mot de passe oublié ?");
+        f_mdp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                f_mdpActionPerformed(evt);
             }
         });
 
-        jPasswordField1.setText("test");
+        connexion.setText("Connexion");
+        connexion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                connexionMouseClicked(evt);
+            }
+        });
+        connexion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                connexionActionPerformed(evt);
+            }
+        });
+
+        password.setText("test");
+        password.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                passwordMouseMoved(evt);
+            }
+        });
+        password.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                passwordMouseExited(evt);
+            }
+        });
 
         jCheckBox1.setText("Afficher");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -88,32 +124,39 @@ public class auth extends javax.swing.JFrame {
             }
         });
 
+        Description.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                DescriptionMouseMoved(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93))
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jButton1)
+                .addComponent(f_mdp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(connexion)
                 .addGap(43, 43, 43))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                            .addComponent(jPasswordField1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Description, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                        .addComponent(password)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,37 +167,87 @@ public class auth extends javax.swing.JFrame {
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Description, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(f_mdp)
+                    .addComponent(connexion))
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void connexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connexionActionPerformed
+               // TODO add your handling code here:
+    }//GEN-LAST:event_connexionActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void f_mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_mdpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_f_mdpActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-         if (jCheckBox1.isSelected()) {
-      jPasswordField1.setEchoChar((char)0); //password = JPasswordField
-   } else {
-      jPasswordField1.setEchoChar('*');
-   }       // TODO add your handling code here:
+        if (jCheckBox1.isSelected()) {
+            password.setEchoChar((char)0); //password = JPasswordField
+        } else {
+            password.setEchoChar('*');
+        }       // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void emailMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailMouseMoved
+          // TODO add your handling code here:
+          Description.setForeground(Color.black);
+          Description.setText("Veuillez entrer votre adresse email.");
+    }//GEN-LAST:event_emailMouseMoved
+
+    private void DescriptionMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DescriptionMouseMoved
+                // TODO add your handling code here:
+    }//GEN-LAST:event_DescriptionMouseMoved
+
+    private void passwordMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordMouseMoved
+        Description.setForeground(Color.black);
+        Description.setText("Veuillez entrer votre mot de passe.");        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordMouseMoved
+
+    private void connexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_connexionMouseClicked
+        String requete= "select * from utilisateur where email = ? and password = ? ";
+        try{
+            
+            ps = conn.prepareStatement(requete);
+            ps.setString(1, email.getText());
+            ps.setString(2, password.getText());
+            rs = ps.executeQuery();
+            if(rs.next()) {
+                System.out.println("correct login" ) ;
+                menu ev = new menu();
+                ev.setVisible(true);
+                this.dispose(); 
+            }
+        }catch(Exception e) {
+            System.out.println("--> Exception : " + e) ;
+            // TODO add your handling code here:
+                }
+        Description.setForeground(Color.red);
+        Description.setText("Email et/ou mot de passe incorrect(s)");
+        System.out.println("Email et/ou mot de passe incorrect(s)");
+        
+    }//GEN-LAST:event_connexionMouseClicked
+
+    private void passwordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordMouseExited
+        Description.setText("");         // TODO add your handling code here:
+    }//GEN-LAST:event_passwordMouseExited
+
+    private void emailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailMouseExited
+        Description.setText("");     // TODO add your handling code here:
+    }//GEN-LAST:event_emailMouseExited
 
     /**
      * @param args the command line arguments
@@ -192,8 +285,10 @@ public class auth extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel Description;
+    private javax.swing.JButton connexion;
+    private javax.swing.JTextField email;
+    private javax.swing.JButton f_mdp;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
@@ -201,7 +296,6 @@ public class auth extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField password;
     // End of variables declaration//GEN-END:variables
 }
