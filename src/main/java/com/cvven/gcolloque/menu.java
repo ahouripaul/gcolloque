@@ -33,6 +33,7 @@ public class menu extends javax.swing.JFrame {
         list_event = new javax.swing.JButton();
         deconnexion = new javax.swing.JButton();
         add_part = new javax.swing.JButton();
+        list_part = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -75,39 +76,48 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
+        list_part.setText("Liste des participants");
+        list_part.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                list_partActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(78, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(list_event, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(add_part, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(add_event, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(add_event, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(list_part, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(68, 68, 68))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(deconnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(139, 139, 139))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGap(79, 79, 79)
+                .addGap(51, 51, 51)
                 .addComponent(add_event)
-                .addGap(49, 49, 49)
+                .addGap(43, 43, 43)
                 .addComponent(add_part)
-                .addGap(50, 50, 50)
+                .addGap(38, 38, 38)
                 .addComponent(list_event)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
+                .addComponent(list_part)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(deconnexion))
         );
 
@@ -156,6 +166,12 @@ public class menu extends javax.swing.JFrame {
         this.dispose();            
     }//GEN-LAST:event_deconnexionMouseClicked
 
+    private void list_partActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_list_partActionPerformed
+        liste_participant ev = new liste_participant();
+        ev.setVisible(true);
+        this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_list_partActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -198,5 +214,6 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     javax.swing.JPanel jPanel1;
     private javax.swing.JButton list_event;
+    private javax.swing.JButton list_part;
     // End of variables declaration//GEN-END:variables
 }

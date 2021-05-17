@@ -301,8 +301,8 @@ public class addEvent extends javax.swing.JFrame {
             ps = conn.prepareStatement(requete);
             ps.setString(1, intitule4.getText());
             ps.setString(2, theme4.getText());
-            ps.setString(3, ((JTextField)datechooser_debut.getDateEditor().getUiComponent()).getText());
-            ps.setString(4, ((JTextField)datechooser_fin.getDateEditor().getUiComponent()).getText());
+            ps.setDate(3, (Date) datechooser_debut.getDate());
+            ps.setDate(4, (Date) datechooser_fin.getDate());
             ps.setInt(5, nb_part_m);
             ps.setString(6, Description4.getText());
             ps.setString(7, organisateur4.getText());

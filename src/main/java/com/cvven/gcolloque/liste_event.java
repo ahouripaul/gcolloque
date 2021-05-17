@@ -24,15 +24,15 @@ public class liste_event extends javax.swing.JFrame {
     PreparedStatement ps = null;
         
     public liste_event() {
-        conn = connexionBDD.Connexion();
-        initComponents();
-        Affichage();
+            conn = connexionBDD.Connexion();
+            initComponents();
+            Affichage();
     }
     
     // Affichage des données dans le tableau
     public void Affichage() {
         try{
-            String requete = "select * from evenement";
+            var requete = "SELECT num_even AS \"ID\" , intitule AS \"Intitulé\" , theme AS \"Thème\", date_debut AS \"Date de début\", date_fin AS \"Date de fin\", nb_part_max AS \"Nombre de participant max\", description AS \"Description\", organisateur AS \"Organisateur\", type_even AS \"Type évenement\", salle AS \"Salle\" FROM evenement";
             ps = conn.prepareStatement(requete);
             rs = ps.executeQuery();
             Table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -53,6 +53,7 @@ public class liste_event extends javax.swing.JFrame {
         Table = new javax.swing.JTable();
         retour = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -76,38 +77,54 @@ public class liste_event extends javax.swing.JFrame {
                 retourMouseClicked(evt);
             }
         });
+        retour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retourActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Liste des évenements");
+
+        jButton1.setText("Ajouter un évenement");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(388, 388, 388)
-                .addComponent(retour)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(85, 85, 85)
+                                .addComponent(retour)
+                                .addGap(218, 218, 218)))
                         .addGap(58, 58, 58))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(322, 322, 322))))
+                        .addGap(303, 303, 303))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel1)
-                .addGap(36, 36, 36)
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(retour)
-                .addGap(38, 38, 38))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(retour)
+                    .addComponent(jButton1))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,6 +136,16 @@ public class liste_event extends javax.swing.JFrame {
         ev.setVisible(true);
         this.dispose();          
     }//GEN-LAST:event_retourMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        addEvent ev = new addEvent();
+        ev.setVisible(true);
+        this.dispose();    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void retourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retourActionPerformed
+          // TODO add your handling code here:
+    }//GEN-LAST:event_retourActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,6 +184,7 @@ public class liste_event extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Table;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton retour;

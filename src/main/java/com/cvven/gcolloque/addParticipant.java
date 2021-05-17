@@ -6,6 +6,9 @@
 package com.cvven.gcolloque;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
@@ -19,10 +22,30 @@ public class addParticipant extends javax.swing.JFrame {
     /**
      * Creates new form addParticipant
      */
+    Connection conn = null;
+    ResultSet rs = null;
+    PreparedStatement ps = null;
+    
     public addParticipant() {
         initComponents();
     }
+    
+    public void FillCombo(){
+        String sql="SELECT intitule FROM inscrit FULL JOIN evenement ON inscrit.num_even = evenement.num_even";
+    try{
+        ps = conn.prepareStatement(sql);
+        rs = ps.executeQuery();
 
+        while(rs.next()){
+            jComboBox1.addItem(rs.getString("intitule"));
+        }
+
+    }catch(Exception e){
+
+
+    }
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,7 +200,24 @@ public class addParticipant extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        date_naiss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                date_naissActionPerformed(evt);
+            }
+        });
+
+        organisation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organisationActionPerformed(evt);
+            }
+        });
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Évenement :");
@@ -326,6 +366,18 @@ public class addParticipant extends javax.swing.JFrame {
                 ev.setVisible(true);
                 this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void organisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organisationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_organisationActionPerformed
+
+    private void date_naissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date_naissActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_date_naissActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+                // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments

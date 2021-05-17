@@ -18,7 +18,7 @@ public class connexionBDD {
     public static Connection Connexion(){
         try {
            Class.forName("org.postgresql.Driver");
-           Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/cvven_colloque", "postgres", "test");
+           Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gcolloque", "postgres", "test");
                                                 if (conn!=null)
             System.out.println("Connexion à la base de données a été établie avec succès !");
                                                 else

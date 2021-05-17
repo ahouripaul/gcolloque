@@ -5,6 +5,11 @@
  */
 package com.cvven.gcolloque;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author toyzy
@@ -14,8 +19,27 @@ public class liste_participant extends javax.swing.JFrame {
     /**
      * Creates new form liste_participant
      */
+        
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+
     public liste_participant() {
+        conn = connexionBDD.Connexion();
         initComponents();
+        Affichage();
+    }
+    
+    public void Affichage() {
+        try{
+            String requete = "select num_pers as \"ID\", nom as \"Nom\", prenom as \"Prenom\", email as \"Email\", phone as \"Téléphone\", date_naiss as \"Date de Naissance\", organisation as \"Organisation\", observation as \"Observation\", intitule as \"Evenement\" from participant";
+            ps = conn.prepareStatement(requete);
+            rs = ps.executeQuery();
+            Table.setModel(DbUtils.resultSetToTableModel(rs));
+         }catch(Exception e) {
+            System.out.println("Exception : " + e) ;
+           }
+        
     }
 
     /**
@@ -27,21 +51,107 @@ public class liste_participant extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Table = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        addParticipant = new javax.swing.JButton();
+        retour = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(Table);
+
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel1.setText("Liste des participants");
+
+        addParticipant.setText("Ajouter un participant");
+        addParticipant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addParticipantActionPerformed(evt);
+            }
+        });
+
+        retour.setText("Retour");
+        retour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retourActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(323, 323, 323))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(addParticipant)
+                        .addGap(85, 85, 85)
+                        .addComponent(retour))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addParticipant)
+                    .addComponent(retour))
+                .addGap(47, 47, 47))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void retourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retourActionPerformed
+        menu ev = new menu();
+        ev.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_retourActionPerformed
+
+    private void addParticipantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addParticipantActionPerformed
+        addParticipant ev = new addParticipant();
+        ev.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_addParticipantActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +189,12 @@ public class liste_participant extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Table;
+    private javax.swing.JButton addParticipant;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JButton retour;
     // End of variables declaration//GEN-END:variables
 }
