@@ -73,6 +73,8 @@ public class addEvent extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         datechooser_debut = new com.toedter.calendar.JDateChooser();
         datechooser_fin = new com.toedter.calendar.JDateChooser();
+        jLabel51 = new javax.swing.JLabel();
+        ID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -168,6 +170,15 @@ public class addEvent extends javax.swing.JFrame {
 
         datechooser_fin.setDateFormatString("yyyy-MM-dd");
 
+        jLabel51.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel51.setText("ID :");
+
+        ID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -199,17 +210,20 @@ public class addEvent extends javax.swing.JFrame {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel43, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel42, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel44, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel45, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel46, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(jLabel46, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel42, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel51, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(intitule4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(theme4)
                                     .addComponent(nb_part, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(datechooser_debut, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                                    .addComponent(datechooser_fin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(datechooser_fin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(ID, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(intitule4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)))))
                         .addGap(46, 46, 46))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -221,15 +235,19 @@ public class addEvent extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel41)
-                .addGap(26, 26, 26)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(intitule4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel42))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel51)
+                    .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel42)
+                    .addComponent(intitule4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(theme4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel43))
-                .addGap(21, 21, 21)
+                    .addComponent(jLabel43)
+                    .addComponent(theme4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel44)
                     .addComponent(datechooser_debut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -260,7 +278,7 @@ public class addEvent extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salle4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel47))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ajouter4)
                     .addComponent(jButton2))
@@ -297,17 +315,18 @@ public class addEvent extends javax.swing.JFrame {
         
         
         try{
-            String requete = "insert into evenement (intitule, theme, date_debut, date_fin, nb_part_max, description, organisateur, type_even, salle) values (?, ?, ?, ?, ?, ?, ?, ?, ?); ";
+            String requete = "insert into evenement (num_even, intitule, theme, date_debut, date_fin, nb_part_max, description, organisateur, type_even, salle) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
             ps = conn.prepareStatement(requete);
-            ps.setString(1, intitule4.getText());
-            ps.setString(2, theme4.getText());
-            ps.setDate(3, (Date) datechooser_debut.getDate());
-            ps.setDate(4, (Date) datechooser_fin.getDate());
-            ps.setInt(5, nb_part_m);
-            ps.setString(6, Description4.getText());
-            ps.setString(7, organisateur4.getText());
-            ps.setString(8, type_event4.getText());
-            ps.setInt(9, salle4.getSelectedIndex());
+            ps.setString(1, ID.);
+            ps.setString(2, intitule4.getText());
+            ps.setString(3, theme4.getText());
+            ps.setString(4, ((JTextField)datechooser_debut.getDateEditor().getUiComponent()).getText());
+            ps.setString(5, ((JTextField)datechooser_fin.getDateEditor().getUiComponent()).getText());
+            ps.setInt(6, nb_part_m);
+            ps.setString(7, Description4.getText());
+            ps.setString(8, organisateur4.getText());
+            ps.setString(9, type_event4.getText());
+            ps.setInt(10, salle4.getSelectedIndex());
 
             ps.execute();
 
@@ -345,6 +364,10 @@ public class addEvent extends javax.swing.JFrame {
     private void intituleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_intituleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_intituleActionPerformed
+
+    private void IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IDActionPerformed
    
     /**
      * @param args the command line arguments
@@ -383,71 +406,13 @@ public class addEvent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea Description;
-    private javax.swing.JTextArea Description1;
-    private javax.swing.JTextArea Description2;
-    private javax.swing.JTextArea Description3;
     private javax.swing.JTextArea Description4;
-    private javax.swing.JButton ajouter;
-    private javax.swing.JButton ajouter1;
-    private javax.swing.JButton ajouter2;
-    private javax.swing.JButton ajouter3;
+    private javax.swing.JTextField ID;
     private javax.swing.JButton ajouter4;
-    private javax.swing.JButton annuler;
-    private javax.swing.JButton annuler1;
-    private javax.swing.JButton annuler2;
-    private javax.swing.JButton annuler3;
-    private com.toedter.calendar.JDateChooser date_debut;
-    private com.toedter.calendar.JDateChooser date_debut1;
-    private com.toedter.calendar.JDateChooser date_debut2;
-    private com.toedter.calendar.JDateChooser date_debut3;
-    private com.toedter.calendar.JDateChooser date_fin;
-    private com.toedter.calendar.JDateChooser date_fin1;
-    private com.toedter.calendar.JDateChooser date_fin2;
-    private com.toedter.calendar.JDateChooser date_fin3;
     private com.toedter.calendar.JDateChooser datechooser_debut;
     private com.toedter.calendar.JDateChooser datechooser_fin;
-    private javax.swing.JTextField intitule;
-    private javax.swing.JTextField intitule1;
-    private javax.swing.JTextField intitule2;
-    private javax.swing.JTextField intitule3;
     private javax.swing.JTextField intitule4;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
@@ -457,46 +422,14 @@ public class addEvent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel jLabel51;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSpinner nb_part;
-    private javax.swing.JSpinner nb_part_max;
-    private javax.swing.JSpinner nb_part_max1;
-    private javax.swing.JSpinner nb_part_max2;
-    private javax.swing.JSpinner nb_part_max3;
-    private javax.swing.JTextField organisateur;
-    private javax.swing.JTextField organisateur1;
-    private javax.swing.JTextField organisateur2;
-    private javax.swing.JTextField organisateur3;
     private javax.swing.JTextField organisateur4;
-    private javax.swing.JComboBox<String> salle;
-    private javax.swing.JComboBox<String> salle1;
-    private javax.swing.JComboBox<String> salle2;
-    private javax.swing.JComboBox<String> salle3;
     private javax.swing.JComboBox<String> salle4;
-    private javax.swing.JTextField theme;
-    private javax.swing.JTextField theme1;
-    private javax.swing.JTextField theme2;
-    private javax.swing.JTextField theme3;
     private javax.swing.JTextField theme4;
-    private javax.swing.JTextField type_event;
-    private javax.swing.JTextField type_event1;
-    private javax.swing.JTextField type_event2;
-    private javax.swing.JTextField type_event3;
     private javax.swing.JTextField type_event4;
     // End of variables declaration//GEN-END:variables
 }
